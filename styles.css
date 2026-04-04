@@ -231,10 +231,9 @@ body {
 .resume-preview-3d {
     width: 100px;
     height: 130px;
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    box-shadow: 10px 10px 30px rgba(0,0,0,0.08);
+    background: transparent;
+    border: 1px solid var(--text-color);
+    border-radius: 2px;
     display: flex;
     flex-direction: column;
     padding: 12px;
@@ -245,9 +244,8 @@ body {
 }
 
 [data-theme="dark"] .resume-preview-3d {
-    background: #1a1a1a;
-    border-color: #333;
-    box-shadow: 10px 10px 40px rgba(255,255,255,0.03);
+    border-color: #fff;
+    box-shadow: none;
 }
 
 .resume-paper {
@@ -257,15 +255,15 @@ body {
 }
 
 .resume-line {
-    height: 4px;
-    background: #f0f0f0;
-    border-radius: 2px;
+    height: 6px;
+    border: 0.5px solid var(--text-muted);
+    border-radius: 1px;
     width: 100%;
 }
 
 .resume-line.title {
-    height: 6px;
-    background: #e0e0e0;
+    height: 8px;
+    border: 1px solid var(--text-color);
     width: 60%;
     margin-bottom: 4px;
 }
@@ -275,8 +273,9 @@ body {
 }
 
 [data-theme="dark"] .resume-line {
-    background: #333;
+    border-color: #ccc;
 }
+
 
 [data-theme="dark"] .resume-line.title {
     background: #444;
