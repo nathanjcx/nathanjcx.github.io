@@ -377,17 +377,22 @@ body {
     height: 28px;
     object-fit: contain;
     mix-blend-mode: multiply;
+    /* Clean up off-white backgrounds from AI generation */
+    filter: grayscale(100%) contrast(500%) brightness(1.1);
 }
 
 [data-theme="dark"] .company-icon {
-    filter: invert(1);
+    /* For dark theme: pure white icons on black background */
+    filter: invert(1) grayscale(100%) contrast(500%) brightness(1.1);
     mix-blend-mode: screen;
 }
 
 [data-theme="hacker"] .company-icon {
-    filter: invert(1) brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+    /* For hacker theme: pure neon green */
+    filter: grayscale(100%) invert(1) brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
     mix-blend-mode: screen;
 }
+
 
 .experience-item h3 {
     font-size: 1.15em;
