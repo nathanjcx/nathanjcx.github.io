@@ -1,4 +1,4 @@
-import { prepareWithSegments, layoutWithLines } from '@chenglou/pretext'
+import { prepareWithSegments, layoutWithLines } from 'https://esm.sh/@chenglou/pretext@0.0.4'
 
 const FONT = '300 16px "Helvetica Neue", Helvetica, Arial, sans-serif'
 const LINE_HEIGHT = 26
