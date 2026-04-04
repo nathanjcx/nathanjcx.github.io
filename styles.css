@@ -298,7 +298,7 @@ body {
 .resume-text-label {
     width: 100%;
     box-sizing: border-box;
-    font-size: 1.1em;
+    font-size: 0.85em;
     font-weight: 400;
     color: var(--text-color);
     text-align: center;
