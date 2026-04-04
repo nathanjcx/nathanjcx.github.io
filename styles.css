@@ -248,7 +248,7 @@ body {
     perspective: 1000px;
     display: flex;
     justify-content: center;
-    margin: 40px 0 24px;
+    margin: 40px 0 80px;
 }
 
 .resume-3d-link {
@@ -265,8 +265,9 @@ body {
     flex-direction: column;
     padding: 12px;
     transform-style: preserve-3d;
-    animation: spinResume 8s linear infinite;
+    animation: floatResume 5s ease-in-out infinite;
     cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 .resume-text-label {
@@ -283,6 +284,11 @@ body {
 [data-theme="dark"] .resume-preview-3d {
     border-color: #fff;
     box-shadow: none;
+}
+
+[data-theme="hacker"] .resume-preview-3d {
+    border-color: #00FF00;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
 }
 
 .resume-paper {
@@ -313,32 +319,23 @@ body {
     border-color: #ccc;
 }
 
-@keyframes spinResume {
-    from { transform: rotateY(0deg) rotateX(10deg); }
-    to { transform: rotateY(360deg) rotateX(10deg); }
+[data-theme="hacker"] .resume-line {
+    border-color: #00FF00;
+}
+
+@keyframes floatResume {
+    0%, 100% { transform: translateY(0) rotateY(-20deg) rotateX(10deg); }
+    50% { transform: translateY(-15px) rotateY(-10deg) rotateX(20deg); }
 }
 
 .resume-preview-3d:hover {
+    transform: rotateY(0deg) rotateX(0deg) scale(1.1) !important;
     animation-play-state: paused;
 }
 
 
-.resume-button {
-    display: inline-block;
-    background-color: var(--btn-bg);
-    color: var(--btn-text);
-    padding: 10px 24px;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 300;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-    margin-bottom: 60px;
-}
 
-.resume-button:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
-}
+
 
 
 .experience-section {
