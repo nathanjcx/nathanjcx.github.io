@@ -7,7 +7,6 @@ const LINE_HEIGHT = 24
 
 const canvas = document.getElementById('pretext-bio-canvas')
 const ctx = canvas.getContext('2d')
-const container = document.querySelector('.container')
 
 let mouseX = -1000
 let mouseY = -1000
@@ -29,76 +28,78 @@ function render() {
     const style = getComputedStyle(document.body)
     const textColor = style.getPropertyValue('--text-color').trim() || '#333'
     const headingColor = style.getPropertyValue('--text-black').trim() || '#000'
-    const highlightedColor = style.getPropertyValue('--text-black').trim() || '#000'
 
     const dpr = window.devicePixelRatio || 1
     const maxWidth = canvas.clientWidth
     
-    // Initial height calculation
+    // Pre-calculate line layouts with Pretext
     let totalHeight = 20
-    const preparedBlocks = BIO_TEXTS.map(block => {
-        let font = FONT_NORMAL
-        if (block.type === 'heading') font = FONT_HEADING
-        if (block.type === 'bold') font = FONT_BOLD
-        
+    const blocksData = BIO_TEXTS.map(block => {
+        const font = block.type === 'heading' ? FONT_HEADING : (block.type === 'bold' ? FONT_BOLD : FONT_NORMAL)
+        const lineH = block.type === 'heading' ? 32 : LINE_HEIGHT
         const prepared = prepareWithSegments(block.text, font)
-        const layout = layoutWithLines(prepared, maxWidth, block.type === 'heading' ? 32 : LINE_HEIGHT)
-        totalHeight += layout.height + (block.type === 'heading' ? 20 : 10)
-        return { block, prepared, layout, font, spacing: (block.type === 'heading' ? 20 : 10) }
+        const layout = layoutWithLines(prepared, maxWidth, lineH)
+        const spacing = block.type === 'heading' ? 24 : 14
+        const blockStart = totalHeight
+        totalHeight += layout.height + spacing
+        return { block, layout, font, lineH, blockStart }
     })
 
     canvas.width = Math.floor(maxWidth * dpr)
     canvas.height = Math.floor(totalHeight * dpr)
     canvas.style.height = `${totalHeight}px`
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    ctx.setTransform(dpr, 1, 0, dpr, 0, 0) // No, keep it clean
+    ctx.scale(dpr, dpr)
 
     ctx.clearRect(0, 0, maxWidth, totalHeight)
 
-    let currentY = 30
-    const AVOID_RADIUS = 60
-    const AVOID_STRENGTH = 40
+    const AVOID_RADIUS = 50
+    const AVOID_STRENGTH = 15
 
-    preparedBlocks.forEach(({ block, layout, font, spacing }) => {
+    blocksData.forEach(({ block, layout, font, lineH }) => {
         ctx.font = font
         ctx.fillStyle = (block.type === 'heading' || block.type === 'bold') ? headingColor : textColor
         ctx.textBaseline = 'alphabetic'
 
-        layout.lines.forEach(line => {
-            // "Avoid" logic per word if possible, or per line for start
-            // To make it look like pretext style, we displace the entire line or segments.
-            
-            const lineX = 0
-            const midY = currentY - (LINE_HEIGHT / 2)
-            
-            const dx = (lineX + maxWidth / 2) - mouseX
-            const dy = midY - mouseY
-            const dist = Math.sqrt(dx * dx + dy * dy)
+        layout.lines.forEach((line, lineIdx) => {
+            const chars = [...line.text]
+            let charXOffset = 0
+            const currentLineBaseY = layout.yLines[lineIdx] + 30 // Approx mapping
 
-            let offsetX = 0
-            let offsetY = 0
+            chars.forEach(char => {
+                const charWidth = ctx.measureText(char).width
+                const charX = charXOffset
+                const charY = currentLineBaseY
+                
+                const dx = charX - mouseX
+                const dy = charY - mouseY
+                const dist = Math.sqrt(dx * dx + dy * dy)
 
-            if (dist < AVOID_RADIUS) {
-                const force = (AVOID_RADIUS - dist) / AVOID_RADIUS
-                offsetX = (dx / dist) * force * AVOID_STRENGTH
-                offsetY = (dy / dist) * force * AVOID_STRENGTH
-            }
+                let ox = 0
+                let oy = 0
 
-            // Draw line with displacement
-            ctx.fillText(line.text, lineX + offsetX, currentY + offsetY)
-            currentY += (block.type === 'heading' ? 32 : LINE_HEIGHT)
+                if (dist < AVOID_RADIUS) {
+                    const ratio = 1 - (dist / AVOID_RADIUS)
+                    ox = (dx / dist) * ratio * AVOID_STRENGTH
+                    oy = (dy / dist) * ratio * AVOID_STRENGTH
+                }
+
+                ctx.fillText(char, charX + ox, charY + oy)
+                charXOffset += charWidth
+            })
         })
-        currentY += spacing
     })
 }
 
-// Initial render and events
-window.addEventListener('resize', render)
+// Global mouse tracker relative to canvas
 window.addEventListener('mousemove', (e) => {
     const rect = canvas.getBoundingClientRect()
     mouseX = e.clientX - rect.left
     mouseY = e.clientY - rect.top
     render()
 })
+
+window.addEventListener('resize', render)
 
 const themeToggle = document.getElementById('theme-toggle')
 let currentTheme = localStorage.getItem('theme') || 
@@ -115,7 +116,6 @@ function setTheme(theme) {
 }
 
 setTheme(currentTheme)
-
 themeToggle.addEventListener('click', () => {
     currentTheme = currentTheme === 'dark' ? 'light' : 'dark'
     setTheme(currentTheme)
@@ -135,7 +135,6 @@ copyEmailBtn.addEventListener('click', () => {
     const email = 'nathanjcx@gmail.com'
     const copyIcon = copyEmailBtn.querySelector('.copy-icon')
     const checkIcon = copyEmailBtn.querySelector('.check-icon')
-
     navigator.clipboard.writeText(email).then(() => {
         copyIcon.classList.add('hidden')
         checkIcon.classList.remove('hidden')
@@ -152,7 +151,7 @@ document.addEventListener('click', (e) => {
     }
 })
 
-// Fix for resume hover
+// Resume hover state management
 document.querySelector('.resume-button').addEventListener('mouseenter', () => {
     document.querySelector('.resume-preview-3d').style.animationPlayState = 'paused'
 })
