@@ -273,14 +273,14 @@ body {
 }
 
 .resume-text-label {
-    font-size: 0.65em;
+    font-size: 1.1em;
     font-weight: 800;
     color: var(--text-color);
     text-align: center;
-    margin-bottom: 8px;
-    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
     border-bottom: 1px solid var(--text-color);
-    padding-bottom: 4px;
+    padding-bottom: 6px;
 }
 
 [data-theme="dark"] .resume-preview-3d {
