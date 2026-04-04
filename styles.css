@@ -246,6 +246,7 @@ body {
     border: 1.5px solid var(--border-color);
     border-radius: 30px;
     color: var(--text-color);
+    background-color: var(--bg-color);
     text-decoration: none;
     font-size: 0.9em;
     font-weight: 500;
@@ -260,6 +261,7 @@ body {
     color: var(--bg-color);
     transform: translateY(-2px);
 }
+
 
 
 
