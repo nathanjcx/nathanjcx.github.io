@@ -28,11 +28,16 @@ function render() {
 
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-  ctx.fillStyle = '#fafafa'
+  // Use CSS variables for theming support
+  const style = getComputedStyle(document.body)
+  const canvasBg = style.getPropertyValue('--canvas-bg').trim() || '#fafafa'
+  const textColor = style.getPropertyValue('--text-color').trim() || '#333'
+
+  ctx.fillStyle = canvasBg
   ctx.fillRect(0, 0, maxWidth, h)
 
   ctx.font = FONT
-  ctx.fillStyle = '#333'
+  ctx.fillStyle = textColor
   ctx.textBaseline = 'alphabetic'
 
   let y = 20
@@ -47,3 +52,27 @@ function render() {
 render()
 widthRange.addEventListener('input', render)
 window.addEventListener('resize', render)
+
+// Theme Toggle Logic
+const themeToggle = document.getElementById('theme-toggle')
+let currentTheme = localStorage.getItem('theme') || 
+                   (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+
+function setTheme(theme) {
+    if (theme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark')
+        themeToggle.textContent = '☀️' // Show sun in dark mode
+    } else {
+        document.body.removeAttribute('data-theme')
+        themeToggle.textContent = '🌙' // Show moon in light mode
+    }
+    localStorage.setItem('theme', theme)
+    render() // Redraw canvas on theme change
+}
+
+setTheme(currentTheme)
+
+themeToggle.addEventListener('click', () => {
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark'
+    setTheme(currentTheme)
+})

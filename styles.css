@@ -5,26 +5,76 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg-color: #fff;
+    --text-color: #333;
+    --text-muted: #666;
+    --text-dark: #444;
+    --text-black: #000;
+    --text-black-hover: #111;
+    --border-color: #333;
+    --border-light: #000;
+    --border-canvas: #ddd;
+    --canvas-bg: #fafafa;
+    --btn-bg: black;
+    --btn-text: white;
+    --icon-filter: none;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --text-muted: #a0a0a0;
+    --text-dark: #ccc;
+    --text-black: #fff;
+    --text-black-hover: #eee;
+    --border-color: #666;
+    --border-light: #555;
+    --border-canvas: #444;
+    --canvas-bg: #1e1e1e;
+    --btn-bg: #f8f8f8;
+    --btn-text: #121212;
+    --icon-filter: invert(1);
+}
+
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 300;
     font-size: 0.9em;
-    color: #333;
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
-    /* Added for vertical centering */
     align-items: center;
-    /* Center items horizontally */
     min-height: 100vh;
-    /* Ensures body takes full height */
     padding: 20px;
-    background-color: #fff;
+    background-color: var(--bg-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
     max-width: 400px;
     width: 100%;
     margin: 0 auto;
+}
+
+/* Theme Toggle */
+.theme-toggle-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: -20px;
+}
+
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+.theme-toggle-btn:hover {
+    transform: scale(1.1);
 }
 
 /* Profile section */
@@ -38,7 +88,7 @@ body {
 .profile-image {
     width: 120px;
     height: 120px;
-    border: 1px solid #333;
+    border: 1px solid var(--border-color);
     margin-right: 20px;
     object-fit: cover;
 }
@@ -51,11 +101,12 @@ body {
 .profile-title {
     font-size: 1.2em;
     font-weight: 400;
+    color: var(--text-black);
 }
 
 .profile-name {
     font-size: 1em;
-    color: #666;
+    color: var(--text-muted);
 }
 
 .profile-header {
@@ -73,12 +124,11 @@ body {
 .social-icons img {
     height: 20px;
     transition: transform 0.2s ease;
-    /* Add transition for social icons */
+    filter: var(--icon-filter);
 }
 
 .social-icons a:hover img {
     transform: scale(1.2);
-    /* Increase size on hover */
 }
 
 .intro {
@@ -87,10 +137,20 @@ body {
     margin-top: 30px;
 }
 
+.highlight {
+    color: var(--text-black);
+    font-weight: bold;
+}
+
+.highlight-normal {
+    color: var(--text-black);
+}
+
 .intro h2 {
     font-size: 1.2em;
     margin-bottom: 10px;
     font-weight: 300;
+    color: var(--text-black);
 }
 
 .intro p {
@@ -101,19 +161,17 @@ body {
 
 .resume-button {
     display: inline-block;
-    background-color: black;
-    color: white;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
     font-weight: 300;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-    /* Apply transition here */
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 }
 
 .resume-button:hover {
     transform: scale(1.05);
-    /* Increase size on hover */
 }
 
 .experience-section {
@@ -125,14 +183,15 @@ body {
     font-size: 1.2em;
     margin-bottom: 15px;
     font-weight: 300;
-    border-bottom: 0.5px solid #000;
+    border-bottom: 0.5px solid var(--border-light);
     padding-bottom: 5px;
+    color: var(--text-black);
 }
 
 .experience-item {
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border-bottom: 0.5px solid #000;
+    border-bottom: 0.5px solid var(--border-light);
 }
 
 .experience-item:last-child {
@@ -142,7 +201,7 @@ body {
 .experience-item h3 {
     font-size: 0.95em;
     margin-bottom: 8px;
-    color: #333;
+    color: var(--text-color);
     font-weight: 500;
 }
 
@@ -156,30 +215,31 @@ body {
     margin-top: 28px;
     margin-bottom: 24px;
     padding-top: 20px;
-    border-top: 0.5px solid #000;
+    border-top: 0.5px solid var(--border-light);
 }
 
 .pretext-playground h2 {
     font-size: 1.2em;
     margin-bottom: 10px;
     font-weight: 300;
+    color: var(--text-black);
 }
 
 .pretext-lede {
     font-size: 0.85em;
     line-height: 1.5;
     margin-bottom: 16px;
-    color: #444;
+    color: var(--text-dark);
 }
 
 .pretext-lede a {
-    color: #111;
+    color: var(--text-black-hover);
     text-decoration: underline;
     text-underline-offset: 2px;
 }
 
 .pretext-lede a:hover {
-    color: #000;
+    color: var(--text-black);
 }
 
 .pretext-controls {
@@ -190,27 +250,27 @@ body {
     display: block;
     font-size: 0.85em;
     margin-bottom: 6px;
-    color: #444;
+    color: var(--text-dark);
 }
 
 .pretext-controls input[type="range"] {
     width: 100%;
     max-width: 400px;
-    accent-color: #111;
+    accent-color: var(--text-black-hover);
 }
 
 .pretext-canvas {
     display: block;
     width: 100%;
     max-width: 400px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-canvas);
     border-radius: 4px;
-    background: #fafafa;
+    background: var(--canvas-bg);
 }
 
 .pretext-stats {
     font-size: 0.8em;
-    color: #666;
+    color: var(--text-muted);
     margin-top: 10px;
     margin-bottom: 0;
     font-variant-numeric: tabular-nums;
