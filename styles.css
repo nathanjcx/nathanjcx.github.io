@@ -257,6 +257,11 @@ body {
     text-decoration: none;
 }
 
+.resume-animation-container {
+    animation: floatResume 5s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
 .resume-preview-3d {
     width: 100px;
     height: 130px;
@@ -266,10 +271,13 @@ body {
     display: flex;
     flex-direction: column;
     padding: 12px;
-    transform-style: preserve-3d;
-    animation: floatResume 5s ease-in-out infinite;
+    transform: rotateY(-20deg) rotateX(10deg);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
     cursor: pointer;
-    transition: transform 0.3s ease;
+}
+
+.resume-preview-3d:hover {
+    transform: rotateY(0deg) rotateX(0deg) scale(1.15) !important;
 }
 
 .resume-text-label {
@@ -290,7 +298,7 @@ body {
 
 [data-theme="hacker"] .resume-preview-3d {
     border-color: #00FF00;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
 }
 
 .resume-paper {
@@ -325,20 +333,10 @@ body {
     border-color: #00FF00;
 }
 
+
 @keyframes floatResume {
-    0%, 100% { transform: translateY(0) rotateY(-20deg) rotateX(10deg); }
-    50% { transform: translateY(-15px) rotateY(-10deg) rotateX(20deg); }
-}
-
-.resume-preview-3d:hover {
-    transform: rotateY(0deg) rotateX(0deg) scale(1.15) !important;
-    animation-play-state: paused;
-    border-width: 1.5px;
-}
-
-@keyframes spinResume {
-    from { transform: scale(1.1) rotateY(0deg) rotateX(10deg); }
-    to { transform: scale(1.1) rotateY(360deg) rotateX(10deg); }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }
 
 
