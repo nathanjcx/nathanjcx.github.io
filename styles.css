@@ -51,7 +51,7 @@
     --canvas-bg: #000;
     --btn-bg: #00FF00;
     --btn-text: #000;
-    --icon-filter: sepia(100%) hue-rotate(60deg) saturate(1000%);
+    --icon-filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
     --font-main: 'VT323', monospace;
 }
 
