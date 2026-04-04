@@ -1,18 +1,19 @@
 const themeToggle = document.getElementById('theme-toggle')
 const themes = ['light', 'dark', 'hacker']
-let currentThemeIndex = themes.indexOf(localStorage.getItem('theme') || 
-                   (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
+let currentThemeIndex = themes.indexOf(localStorage.getItem('theme') || 'light')
 if (currentThemeIndex === -1) currentThemeIndex = 0
 
 function setTheme(theme) {
-    document.body.removeAttribute('data-theme')
-    if (theme !== 'light') {
+    if (theme === 'light') {
+        document.body.removeAttribute('data-theme')
+    } else {
         document.body.setAttribute('data-theme', theme)
     }
     localStorage.setItem('theme', theme)
 }
 
 setTheme(themes[currentThemeIndex])
+
 themeToggle.addEventListener('click', () => {
     currentThemeIndex = (currentThemeIndex + 1) % themes.length
     setTheme(themes[currentThemeIndex])
@@ -48,12 +49,3 @@ document.addEventListener('click', (e) => {
     }
 })
 
-// Resume hover state management
-document.querySelector('.resume-button').addEventListener('mouseenter', () => {
-    const preview = document.querySelector('.resume-preview-3d')
-    if (preview) preview.style.animationPlayState = 'paused'
-})
-document.querySelector('.resume-button').addEventListener('mouseleave', () => {
-    const preview = document.querySelector('.resume-preview-3d')
-    if (preview) preview.style.animationPlayState = 'running'
-})
