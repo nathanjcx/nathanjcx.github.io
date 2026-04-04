@@ -51,9 +51,10 @@
     --canvas-bg: #000;
     --btn-bg: #00FF00;
     --btn-text: #000;
-    --icon-filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+    --icon-filter: contrast(1000%) invert(1) sepia(1) saturate(1000%) hue-rotate(100deg) brightness(1.4);
     --font-main: 'VT323', monospace;
 }
+
 
 body {
     font-family: var(--font-main);
@@ -404,13 +405,13 @@ body {
 
 [data-theme="dark"] .company-icon {
     /* For dark theme: pure white icons on black background */
-    filter: invert(1) grayscale(100%) contrast(500%) brightness(1.1);
+    filter: contrast(1000%) invert(1) grayscale(100%) brightness(1.2);
     mix-blend-mode: screen;
 }
 
 [data-theme="hacker"] .company-icon {
-    /* For hacker theme: neon green on black (using sepia/hue trick for better transparency) */
-    filter: invert(1) sepia(1) saturate(1000%) hue-rotate(80deg) brightness(1.5);
+    /* For hacker theme: neon green on black (using contrast/sepia/hue trick for zero boxes) */
+    filter: contrast(1000%) invert(1) sepia(1) saturate(1000%) hue-rotate(100deg) brightness(1.5);
     mix-blend-mode: screen;
 }
 
