@@ -226,11 +226,58 @@ body {
     color: var(--text-black);
 }
 
-.intro h2 {
+.intro h2.greeting-row {
     font-size: 1.2em;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-weight: 300;
     color: var(--text-black);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hello-text {
+    font-size: 1.4em;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    color: var(--text-black);
+    display: inline-block;
+}
+
+.greeting-icon-wrap {
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-black);
+    perspective: 800px;
+}
+
+.hand-wireframe {
+    width: 100%;
+    height: 100%;
+    transform-origin: 50% 90%;
+    animation: smooth-hand-wave 1.25s ease-in-out infinite alternate;
+    display: block;
+}
+
+@keyframes smooth-hand-wave {
+    0% { transform: rotate(-15deg) scaleX(0.9); }
+    100% { transform: rotate(15deg) scaleX(0.9); }
+}
+
+[data-theme="hacker"] .greeting-icon-wrap {
+    color: #00FF00;
+}
+
+[data-theme="dark"] .greeting-icon-wrap {
+    color: #fff;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
 }
 
 .section-divider {
@@ -244,25 +291,16 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 32px;
-    border: 2px solid var(--border-color);
-    border-radius: 50px;
-    color: var(--text-color);
-    background-color: var(--bg-color);
+    padding: 8px 24px;
+    border: 1px solid var(--text-black);
+    border-radius: 999px;
+    color: var(--text-black);
+    background-color: transparent;
     text-decoration: none;
-    font-size: 0.95em;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    margin-top: 15px;
+    font-size: 0.85em;
+    font-weight: normal;
+    margin-top: 10px;
     margin-bottom: 50px;
-    cursor: pointer;
-}
-
-.resume-capsule-btn:hover {
-    background-color: var(--text-color);
-    color: var(--bg-color);
-    transform: translateY(-2px);
 }
 
 
@@ -337,4 +375,62 @@ body {
     font-size: 0.9em;
     line-height: 1.6;
     margin-bottom: 0;
+}
+.hobbies-row {
+    display: flex;
+    gap: 25px;
+    margin-top: 18px;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+.hobby-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hobby-icon {
+    width: 22px;
+    height: 22px;
+    color: var(--text-black);
+    opacity: 0.85;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hobby-item:hover .hobby-icon {
+    opacity: 1;
+    transform: scale(1.15) translateY(-2px);
+}
+
+/* Hobby Animations */
+.vball-icon { animation: vball-spin 5s linear infinite; }
+.snow-icon { animation: snow-carve 2.5s ease-in-out infinite alternate; }
+.guitar-icon { animation: guitar-vib 0.8s ease-in-out infinite alternate-reverse; }
+.plane-icon { animation: plane-fly 4s ease-in-out infinite alternate; }
+.family-icon { animation: icon-pulse 3s ease-in-out infinite alternate; }
+
+@keyframes vball-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes snow-carve {
+    0% { transform: translate(-4px, 1px) rotate(-10deg); }
+    100% { transform: translate(4px, -1px) rotate(10deg); }
+}
+
+@keyframes guitar-vib {
+    0% { transform: rotate(-2deg); }
+    100% { transform: rotate(2deg); }
+}
+
+@keyframes plane-fly {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(3px, -3px); }
+}
+
+@keyframes icon-pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
 }
