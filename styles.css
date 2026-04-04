@@ -228,6 +228,10 @@ body {
     margin: 40px 0 24px;
 }
 
+.resume-3d-link {
+    text-decoration: none;
+}
+
 .resume-preview-3d {
     width: 100px;
     height: 130px;
@@ -237,10 +241,20 @@ body {
     display: flex;
     flex-direction: column;
     padding: 12px;
-    transform: rotateY(-25deg) rotateX(15deg);
-    transition: transform 0.3s ease;
-    animation: floatResume 5s ease-in-out infinite;
-    cursor: default;
+    transform-style: preserve-3d;
+    animation: spinResume 8s linear infinite;
+    cursor: pointer;
+}
+
+.resume-text-label {
+    font-size: 0.65em;
+    font-weight: 800;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--text-color);
+    padding-bottom: 4px;
 }
 
 [data-theme="dark"] .resume-preview-3d {
@@ -251,21 +265,21 @@ body {
 .resume-paper {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 .resume-line {
-    height: 6px;
+    height: 3px;
     border: 0.5px solid var(--text-muted);
     border-radius: 1px;
     width: 100%;
 }
 
 .resume-line.title {
-    height: 8px;
+    height: 5px;
     border: 1px solid var(--text-color);
     width: 60%;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .resume-line.short {
@@ -276,20 +290,15 @@ body {
     border-color: #ccc;
 }
 
-
-[data-theme="dark"] .resume-line.title {
-    background: #444;
-}
-
-@keyframes floatResume {
-    0%, 100% { transform: translateY(0) rotateY(-25deg) rotateX(15deg); }
-    50% { transform: translateY(-15px) rotateY(-15deg) rotateX(10deg); }
+@keyframes spinResume {
+    from { transform: rotateY(0deg) rotateX(10deg); }
+    to { transform: rotateY(360deg) rotateX(10deg); }
 }
 
 .resume-preview-3d:hover {
-    transform: rotateY(0deg) rotateX(0deg) scale(1.1);
     animation-play-state: paused;
 }
+
 
 .resume-button {
     display: inline-block;
