@@ -352,28 +352,44 @@ body {
 }
 
 .experience-section h2 {
-    font-size: 1.2em;
-    margin-bottom: 15px;
+    font-size: 1.4em;
+    margin-bottom: 24px;
     font-weight: 300;
     border-bottom: 0.5px solid var(--border-light);
-    padding-bottom: 5px;
+    padding-bottom: 8px;
     color: var(--text-black);
 }
 
 .experience-item {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 0.5px solid var(--border-light);
+    margin-bottom: 36px;
+    padding-bottom: 0;
 }
 
-.experience-item:last-child {
-    padding-bottom: 20px;
+.company-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.company-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+[data-theme="dark"] .company-icon {
+    filter: invert(1);
+}
+
+[data-theme="hacker"] .company-icon {
+    filter: invert(1) brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
 }
 
 .experience-item h3 {
-    font-size: 0.95em;
-    margin-bottom: 8px;
-    color: var(--text-color);
+    font-size: 1.15em;
+    margin: 0;
+    color: var(--text-black);
     font-weight: 500;
 }
 
