@@ -371,8 +371,8 @@ body {
 }
 
 .company-icon {
-    width: 28px;
-    height: 28px;
+    width: 36px;
+    height: 36px;
     object-fit: contain;
     mix-blend-mode: multiply;
     /* Clean up off-white backgrounds from AI generation */
@@ -386,10 +386,11 @@ body {
 }
 
 [data-theme="hacker"] .company-icon {
-    /* For hacker theme: pure neon green */
-    filter: grayscale(100%) invert(1) brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+    /* For hacker theme: neon green on black (using sepia/hue trick for better transparency) */
+    filter: invert(1) sepia(1) saturate(1000%) hue-rotate(80deg) brightness(1.5);
     mix-blend-mode: screen;
 }
+
 
 
 .experience-item h3 {
