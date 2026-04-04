@@ -241,13 +241,13 @@ body {
 .resume-preview-box {
     perspective: 1000px;
     display: flex;
-    justify-content: center;
-    margin: 40px 0 80px;
+    justify-content: flex-start;
+    margin: 30px 0 60px;
 }
 
 .resume-hit-area {
-    width: 100px;
-    height: 130px;
+    width: 80px;
+    height: 105px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -298,17 +298,17 @@ body {
 .resume-text-label {
     width: 100%;
     box-sizing: border-box;
-    font-size: 0.85em;
+    font-size: 0.7em;
     font-weight: 400;
     color: var(--text-color);
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     letter-spacing: 1px;
     border-bottom: 1px solid var(--text-color);
-    padding-bottom: 6px;
+    padding-bottom: 4px;
 }
 
 [data-theme="dark"] .resume-preview-3d {
@@ -324,18 +324,18 @@ body {
 .resume-paper {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 }
 
 .resume-line {
-    height: 3px;
+    height: 2px;
     border: 0.5px solid var(--text-muted);
     border-radius: 1px;
     width: 100%;
 }
 
 .resume-line.title {
-    height: 5px;
+    height: 3px;
     border: 1px solid var(--text-color);
     width: 60%;
     margin-bottom: 2px;
