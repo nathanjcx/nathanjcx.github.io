@@ -221,20 +221,94 @@ body {
     margin-bottom: 20px;
 }
 
+.resume-preview-box {
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 24px;
+}
+
+.resume-preview-3d {
+    width: 100px;
+    height: 130px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    transform: rotateY(-25deg) rotateX(15deg);
+    transition: transform 0.3s ease;
+    animation: floatResume 5s ease-in-out infinite;
+    cursor: default;
+}
+
+[data-theme="dark"] .resume-preview-3d {
+    background: #1a1a1a;
+    border-color: #333;
+    box-shadow: 10px 10px 40px rgba(255,255,255,0.03);
+}
+
+.resume-paper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.resume-line {
+    height: 4px;
+    background: #f0f0f0;
+    border-radius: 2px;
+    width: 100%;
+}
+
+.resume-line.title {
+    height: 6px;
+    background: #e0e0e0;
+    width: 60%;
+    margin-bottom: 4px;
+}
+
+.resume-line.short {
+    width: 40%;
+}
+
+[data-theme="dark"] .resume-line {
+    background: #333;
+}
+
+[data-theme="dark"] .resume-line.title {
+    background: #444;
+}
+
+@keyframes floatResume {
+    0%, 100% { transform: translateY(0) rotateY(-25deg) rotateX(15deg); }
+    50% { transform: translateY(-15px) rotateY(-15deg) rotateX(10deg); }
+}
+
+.resume-preview-3d:hover {
+    transform: rotateY(0deg) rotateX(0deg) scale(1.1);
+    animation-play-state: paused;
+}
+
 .resume-button {
     display: inline-block;
     background-color: var(--btn-bg);
     color: var(--btn-text);
-    padding: 10px 20px;
+    padding: 10px 24px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-weight: 300;
-    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    margin-bottom: 60px;
 }
 
 .resume-button:hover {
-    transform: scale(1.05);
+    transform: translateY(-2px);
+    opacity: 0.9;
 }
+
 
 .experience-section {
     margin-top: 20px;
