@@ -331,8 +331,8 @@ body {
 }
 
 .resume-preview-3d:hover {
-    animation: spinResume 4s linear infinite;
-    transform: scale(1.15) !important;
+    transform: rotateY(0deg) rotateX(0deg) scale(1.15) !important;
+    animation-play-state: paused;
     border-width: 1.5px;
 }
 
