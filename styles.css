@@ -329,8 +329,14 @@ body {
 }
 
 .resume-preview-3d:hover {
-    transform: rotateY(0deg) rotateX(0deg) scale(1.1) !important;
-    animation-play-state: paused;
+    animation: spinResume 4s linear infinite;
+    transform: scale(1.15) !important;
+    border-width: 1.5px;
+}
+
+@keyframes spinResume {
+    from { transform: scale(1.1) rotateY(0deg) rotateX(10deg); }
+    to { transform: scale(1.1) rotateY(360deg) rotateX(10deg); }
 }
 
 
