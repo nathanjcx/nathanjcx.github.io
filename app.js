@@ -87,11 +87,15 @@ emailBtn.addEventListener('click', (e) => {
 
 copyEmailBtn.addEventListener('click', () => {
     const email = 'nathanjcx@gmail.com'
+    const copyIcon = copyEmailBtn.querySelector('.copy-icon')
+    const checkIcon = copyEmailBtn.querySelector('.check-icon')
+
     navigator.clipboard.writeText(email).then(() => {
-        const originalText = copyEmailBtn.textContent
-        copyEmailBtn.textContent = 'Copied!'
+        copyIcon.classList.add('hidden')
+        checkIcon.classList.remove('hidden')
         setTimeout(() => {
-            copyEmailBtn.textContent = originalText
+            copyIcon.classList.remove('hidden')
+            checkIcon.classList.add('hidden')
         }, 2000)
     })
 })
