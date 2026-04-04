@@ -232,10 +232,11 @@ body {
     color: var(--text-black);
 }
 
-.intro p {
-    font-size: 0.9em;
-    line-height: 1.6;
+.section-divider {
+    border: none;
+    border-bottom: 0.5px solid var(--border-light);
     margin-bottom: 20px;
+    margin-top: 0;
 }
 
 .resume-preview-box {
