@@ -253,18 +253,45 @@ body {
     margin: 40px 0 80px;
 }
 
-.resume-3d-link {
-    text-decoration: none;
+.resume-hit-area {
+    width: 100px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    cursor: pointer;
 }
 
-.resume-animation-container {
+.resume-floater {
     animation: floatResume 5s ease-in-out infinite;
     transform-style: preserve-3d;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.resume-hit-area:hover .resume-floater {
+    animation-play-state: paused;
+}
+
+.resume-hit-area:hover .resume-preview-3d {
+    transform: rotateY(0deg) rotateX(0deg) scale(1.15) !important;
+    border-width: 1.5px;
+}
+
+.resume-3d-link {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .resume-preview-3d {
-    width: 100px;
-    height: 130px;
+    width: 100%;
+    height: 100%;
     background: transparent;
     border: 1px solid var(--text-color);
     border-radius: 2px;
@@ -273,12 +300,8 @@ body {
     padding: 12px;
     transform: rotateY(-20deg) rotateX(10deg);
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
-    cursor: pointer;
 }
 
-.resume-preview-3d:hover {
-    transform: rotateY(0deg) rotateX(0deg) scale(1.15) !important;
-}
 
 .resume-text-label {
     font-size: 1.1em;
