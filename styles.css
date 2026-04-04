@@ -389,22 +389,23 @@ body {
 .company-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
+    gap: 8px;
+    margin-bottom: 8px;
 }
 
 .company-icon {
-    width: 28px;
-    height: 28px;
+    width: 22px;
+    height: 22px;
     flex-shrink: 0;
 }
 
 .experience-item h3 {
-    font-size: 1.15em;
+    font-size: 1.0em;
     margin: 0;
     color: var(--text-black);
     font-weight: 500;
 }
+
 
 
 .experience-item p {
