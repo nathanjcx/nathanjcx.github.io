@@ -376,14 +376,17 @@ body {
     width: 28px;
     height: 28px;
     object-fit: contain;
+    mix-blend-mode: multiply;
 }
 
 [data-theme="dark"] .company-icon {
     filter: invert(1);
+    mix-blend-mode: screen;
 }
 
 [data-theme="hacker"] .company-icon {
     filter: invert(1) brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+    mix-blend-mode: screen;
 }
 
 .experience-item h3 {
