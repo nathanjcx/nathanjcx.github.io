@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <div class="profile">
-            <img src="nathan.jpg" class="profile-image">
+            <img src="nathan.jpg" class="profile-image" alt="Nathan Cheng">
             <div class="profile-info">
                 <h1 class="profile-title">Nathan Cheng</h1>
                 <p class="profile-header">CS @ USF</p>
@@ -21,8 +21,8 @@
                 <p class="profile-header">Ex  Apple Intern</p>
                 <p class="profile-header">Ex MIT LL Intern</p>
                 <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/nathanjcheng/"><img src="linkedin.png"></a>
-                    <a href="mailto:nathancheng7@gmail.com"><img src="email.png"></a>
+                    <a href="https://www.linkedin.com/in/nathanjcheng/"><img src="linkedin.png" alt="LinkedIn"></a>
+                    <a href="mailto:nathancheng7@gmail.com"><img src="email.png" alt="Email"></a>
                 </div>
             </div>
         </div>
@@ -59,9 +59,23 @@
                 When I am not coding, I enjoy playing beach volleyball, snowboarding, strumming my guitar,
                 traveling, and spending time with friends and family.
             </p>
+            <section class="pretext-playground" aria-labelledby="pretext-heading">
+                <h2 id="pretext-heading">Pretext</h2>
+                <p class="pretext-lede">
+                    Live paragraph layout via <a href="https://github.com/chenglou/pretext" target="_blank"
+                        rel="noopener noreferrer">chenglou/pretext</a> — canvas measurement, no DOM reflow.
+                </p>
+                <div class="pretext-controls">
+                    <label for="pretext-width">Column width: <span id="pretext-width-label">280</span></label>
+                    <input type="range" id="pretext-width" min="160" max="400" value="280" step="4">
+                </div>
+                <canvas id="pretext-canvas" class="pretext-canvas" width="280" height="80"></canvas>
+                <p id="pretext-stats" class="pretext-stats" aria-live="polite"></p>
+            </section>
             <a href="nathanjcx2026.pdf" class="resume-button" target="_blank">Resume</a>
         </div>
     </div>
+    <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>
