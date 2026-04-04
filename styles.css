@@ -58,27 +58,13 @@ body {
 }
 
 /* Theme Toggle */
-.theme-toggle-wrapper {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: -20px;
-}
-
+/* Theme Toggle Button (part of icon-box) */
 .theme-toggle-btn {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 5px;
-    border-radius: 50%;
-    transition: transform 0.3s ease, color 0.3s ease;
     color: var(--text-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.theme-toggle-btn:hover {
-    transform: scale(1.1);
+    padding: 0;
 }
 
 .theme-toggle-btn .sun-icon { display: none; }
@@ -125,22 +111,32 @@ body {
 }
 
 .social-icons {
-    margin-top: 5px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.social-icons a {
-    margin-right: 5px;
+.icon-box {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+}
+
+.icon-box:hover {
+    transform: scale(1.15);
 }
 
 .social-icons img {
-    height: 20px;
-    transition: transform 0.2s ease;
+    height: 18px;
+    width: auto;
     filter: var(--icon-filter);
 }
 
-.social-icons a:hover img {
-    transform: scale(1.2);
-}
 
 .intro {
     text-align: left;
