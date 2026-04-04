@@ -51,7 +51,7 @@
     --canvas-bg: #000;
     --btn-bg: #00FF00;
     --btn-text: #000;
-    --icon-filter: contrast(1000%) invert(1) sepia(1) saturate(1000%) hue-rotate(60deg) brightness(1.4);
+    --icon-filter: contrast(1000%) invert(1) sepia(1) saturate(10000%) hue-rotate(70deg) brightness(1.2);
     --font-main: 'VT323', monospace;
 }
 
@@ -413,7 +413,7 @@ body {
 
 [data-theme="hacker"] .company-icon {
     /* For hacker theme: neon green on black (using contrast/sepia/hue trick for zero boxes) */
-    filter: contrast(1000%) invert(1) sepia(1) saturate(1000%) hue-rotate(60deg) brightness(1.5);
+    filter: contrast(1000%) invert(1) sepia(1) saturate(10000%) hue-rotate(70deg) brightness(1.2);
     mix-blend-mode: screen;
 }
 
