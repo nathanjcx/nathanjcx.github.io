@@ -16,9 +16,6 @@
     --border-light: #000;
     --border-canvas: #ddd;
     --canvas-bg: #fafafa;
-    --btn-bg: black;
-    --btn-text: white;
-    --icon-filter: none;
     --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -33,9 +30,7 @@
     --border-light: #333;
     --border-canvas: #222;
     --canvas-bg: #111;
-    --btn-bg: #fff;
     --btn-text: #000;
-    --icon-filter: invert(1);
 }
 
 [data-theme="hacker"] {
@@ -49,11 +44,10 @@
     --border-light: #00FF00;
     --border-canvas: #003300;
     --canvas-bg: #000;
-    --btn-bg: #00FF00;
     --btn-text: #000;
-    --icon-filter: contrast(1000%) invert(1) invert(50%) sepia(1) saturate(10000%) hue-rotate(65deg) brightness(1.5);
     --font-main: 'VT323', monospace;
 }
+
 
 
 body {
@@ -137,35 +131,25 @@ body {
 }
 
 .social-icons {
-    margin-top: 8px;
+    margin-top: 20px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 16px;
 }
 
 .icon-box {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, color 0.2s ease;
     text-decoration: none;
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
-    color: inherit;
-}
-
-.icon-box:hover {
-    transform: scale(1.15);
-}
-
-.social-icons img {
-    height: 18px;
-    width: auto;
-    filter: var(--icon-filter);
+    color: var(--text-color);
 }
 
 .email-container {
@@ -389,6 +373,12 @@ body {
     padding-bottom: 0;
 }
 
+.social-svg-icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
 .company-header {
     display: flex;
     align-items: center;
@@ -397,27 +387,10 @@ body {
 }
 
 .company-icon {
-    width: 36px;
-    height: 36px;
-    object-fit: contain;
-    mix-blend-mode: multiply;
-    /* Clean up off-white backgrounds from AI generation */
-    filter: grayscale(100%) contrast(500%) brightness(1.1);
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
 }
-
-[data-theme="dark"] .company-icon {
-    /* For dark theme: pure white icons on black background */
-    filter: contrast(1000%) invert(1) grayscale(100%) brightness(1.2);
-    mix-blend-mode: screen;
-}
-
-[data-theme="hacker"] .company-icon {
-    /* For hacker theme: neon green on black (using contrast/sepia/hue trick for zero boxes) */
-    filter: contrast(1000%) invert(1) invert(50%) sepia(1) saturate(10000%) hue-rotate(65deg) brightness(1.5);
-    mix-blend-mode: screen;
-}
-
-
 
 .experience-item h3 {
     font-size: 1.15em;
@@ -425,6 +398,7 @@ body {
     color: var(--text-black);
     font-weight: 500;
 }
+
 
 .experience-item p {
     font-size: 0.9em;
