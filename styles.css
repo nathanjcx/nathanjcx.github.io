@@ -67,15 +67,25 @@ body {
 .theme-toggle-btn {
     background: none;
     border: none;
-    font-size: 1.2rem;
     cursor: pointer;
     padding: 5px;
     border-radius: 50%;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, color 0.3s ease;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .theme-toggle-btn:hover {
     transform: scale(1.1);
 }
+
+.theme-toggle-btn .sun-icon { display: none; }
+.theme-toggle-btn .moon-icon { display: block; }
+
+[data-theme="dark"] .theme-toggle-btn .sun-icon { display: block; }
+[data-theme="dark"] .theme-toggle-btn .moon-icon { display: none; }
 
 /* Profile section */
 .profile {

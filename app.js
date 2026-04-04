@@ -61,10 +61,8 @@ let currentTheme = localStorage.getItem('theme') ||
 function setTheme(theme) {
     if (theme === 'dark') {
         document.body.setAttribute('data-theme', 'dark')
-        themeToggle.textContent = '☀️' // Show sun in dark mode
     } else {
         document.body.removeAttribute('data-theme')
-        themeToggle.textContent = '🌙' // Show moon in light mode
     }
     localStorage.setItem('theme', theme)
     render() // Redraw canvas on theme change
