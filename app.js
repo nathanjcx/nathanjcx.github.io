@@ -74,3 +74,30 @@ themeToggle.addEventListener('click', () => {
     currentTheme = currentTheme === 'dark' ? 'light' : 'dark'
     setTheme(currentTheme)
 })
+
+// Email Popup Logic
+const emailBtn = document.getElementById('email-btn')
+const emailPopup = document.getElementById('email-popup')
+const copyEmailBtn = document.getElementById('copy-email-btn')
+
+emailBtn.addEventListener('click', (e) => {
+    e.stopPropagation()
+    emailPopup.classList.toggle('hidden')
+})
+
+copyEmailBtn.addEventListener('click', () => {
+    const email = 'nathanjcx@gmail.com'
+    navigator.clipboard.writeText(email).then(() => {
+        const originalText = copyEmailBtn.textContent
+        copyEmailBtn.textContent = 'Copied!'
+        setTimeout(() => {
+            copyEmailBtn.textContent = originalText
+        }, 2000)
+    })
+})
+
+document.addEventListener('click', (e) => {
+    if (!emailPopup.contains(e.target) && e.target !== emailBtn) {
+        emailPopup.classList.add('hidden')
+    }
+})

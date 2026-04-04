@@ -137,6 +137,55 @@ body {
     filter: var(--icon-filter);
 }
 
+.email-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.email-popup {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: var(--text-black);
+    color: var(--bg-color);
+    padding: 6px 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-size: 0.8em;
+    font-weight: 400;
+}
+
+[data-theme="dark"] .email-popup {
+    box-shadow: 0 4px 12px rgba(255,255,255,0.05);
+}
+
+.email-popup.hidden {
+    display: none;
+}
+
+.copy-btn {
+    background: var(--bg-color);
+    color: var(--text-black);
+    border: none;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.copy-btn:hover {
+    filter: brightness(0.9);
+}
+
 
 .intro {
     text-align: left;
