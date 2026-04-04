@@ -19,6 +19,7 @@
     --btn-bg: black;
     --btn-text: white;
     --icon-filter: none;
+    --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 [data-theme="dark"] {
@@ -51,12 +52,13 @@
     --btn-bg: #00FF00;
     --btn-text: #000;
     --icon-filter: sepia(100%) hue-rotate(60deg) saturate(1000%);
+    --font-main: 'VT323', monospace;
 }
 
 body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: var(--font-main);
     font-weight: 300;
-    font-size: 0.9em;
+    font-size: 1em;
     color: var(--text-color);
     display: flex;
     flex-direction: column;
