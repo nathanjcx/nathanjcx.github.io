@@ -91,6 +91,7 @@ body {
     border: 1px solid var(--border-color);
     margin-right: 20px;
     object-fit: cover;
+    border-radius: 12px;
 }
 
 .profile-info {
