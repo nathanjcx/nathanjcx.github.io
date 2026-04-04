@@ -22,18 +22,18 @@
 }
 
 [data-theme="dark"] {
-    --bg-color: #121212;
-    --text-color: #e0e0e0;
-    --text-muted: #a0a0a0;
-    --text-dark: #ccc;
+    --bg-color: #000;
+    --text-color: #fff;
+    --text-muted: #ccc;
+    --text-dark: #ddd;
     --text-black: #fff;
     --text-black-hover: #eee;
-    --border-color: #666;
-    --border-light: #555;
-    --border-canvas: #444;
-    --canvas-bg: #1e1e1e;
-    --btn-bg: #f8f8f8;
-    --btn-text: #121212;
+    --border-color: #444;
+    --border-light: #333;
+    --border-canvas: #222;
+    --canvas-bg: #111;
+    --btn-bg: #fff;
+    --btn-text: #000;
     --icon-filter: invert(1);
 }
 
