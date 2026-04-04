@@ -401,6 +401,11 @@ body {
     flex-shrink: 0;
 }
 
+.microsoft-icon {
+    transform: scale(0.85);
+}
+
+
 .experience-item h3 {
     font-size: 1.0em;
     margin: 0;
