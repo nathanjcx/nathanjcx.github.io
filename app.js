@@ -1,59 +1,105 @@
 import { prepareWithSegments, layoutWithLines } from 'https://esm.sh/@chenglou/pretext@0.0.4'
 
-const FONT = '300 16px "Helvetica Neue", Helvetica, Arial, sans-serif'
-const LINE_HEIGHT = 26
-const SAMPLE =
-  'AGI 春天到了. بدأت الرحلة 🚀 — Multiline layout with zero DOM measurement. Resize the slider.'
+const FONT_NORMAL = '300 15px "Helvetica Neue", Helvetica, Arial, sans-serif'
+const FONT_BOLD = '500 15px "Helvetica Neue", Helvetica, Arial, sans-serif'
+const FONT_HEADING = '300 20px "Helvetica Neue", Helvetica, Arial, sans-serif'
+const LINE_HEIGHT = 24
 
-const canvas = document.getElementById('pretext-canvas')
+const canvas = document.getElementById('pretext-bio-canvas')
 const ctx = canvas.getContext('2d')
-const widthRange = document.getElementById('pretext-width')
-const widthLabel = document.getElementById('pretext-width-label')
-const stats = document.getElementById('pretext-stats')
+const container = document.querySelector('.container')
+
+let mouseX = -1000
+let mouseY = -1000
+
+const BIO_TEXTS = [
+    { type: 'heading', text: 'Hello.' },
+    { type: 'normal', text: 'My name is Nathan, welcome to my personal website!' },
+    { type: 'heading', text: 'Experience' },
+    { type: 'bold', text: 'Apple' },
+    { type: 'normal', text: 'Developed visionOS video applications and experiences for the Vision Pro.' },
+    { type: 'bold', text: 'Microsoft' },
+    { type: 'normal', text: 'Focused on Responsible AI and scalable AI agents.' },
+    { type: 'bold', text: 'MIT Lincoln Laboratory' },
+    { type: 'normal', text: 'Worked with computer vision libraries such as OpenCV to generate CAD.' },
+    { type: 'normal', text: 'When I am not coding, I enjoy playing beach volleyball, snowboarding, strumming my guitar, traveling, and spending time with friends and family.' }
+]
 
 function render() {
-  const maxWidth = Number(widthRange.value)
-  widthLabel.textContent = `${maxWidth}px`
+    const style = getComputedStyle(document.body)
+    const textColor = style.getPropertyValue('--text-color').trim() || '#333'
+    const headingColor = style.getPropertyValue('--text-black').trim() || '#000'
+    const highlightedColor = style.getPropertyValue('--text-black').trim() || '#000'
 
-  const prepared = prepareWithSegments(SAMPLE, FONT)
-  const { height, lineCount, lines } = layoutWithLines(prepared, maxWidth, LINE_HEIGHT)
+    const dpr = window.devicePixelRatio || 1
+    const maxWidth = canvas.clientWidth
+    
+    // Initial height calculation
+    let totalHeight = 20
+    const preparedBlocks = BIO_TEXTS.map(block => {
+        let font = FONT_NORMAL
+        if (block.type === 'heading') font = FONT_HEADING
+        if (block.type === 'bold') font = FONT_BOLD
+        
+        const prepared = prepareWithSegments(block.text, font)
+        const layout = layoutWithLines(prepared, maxWidth, block.type === 'heading' ? 32 : LINE_HEIGHT)
+        totalHeight += layout.height + (block.type === 'heading' ? 20 : 10)
+        return { block, prepared, layout, font, spacing: (block.type === 'heading' ? 20 : 10) }
+    })
 
-  const h = Math.max(Math.ceil(height) + 8, LINE_HEIGHT)
-  const dpr = window.devicePixelRatio || 1
+    canvas.width = Math.floor(maxWidth * dpr)
+    canvas.height = Math.floor(totalHeight * dpr)
+    canvas.style.height = `${totalHeight}px`
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-  canvas.style.width = `${maxWidth}px`
-  canvas.style.height = `${h}px`
-  canvas.width = Math.floor(maxWidth * dpr)
-  canvas.height = Math.floor(h * dpr)
+    ctx.clearRect(0, 0, maxWidth, totalHeight)
 
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    let currentY = 30
+    const AVOID_RADIUS = 60
+    const AVOID_STRENGTH = 40
 
-  // Use CSS variables for theming support
-  const style = getComputedStyle(document.body)
-  const canvasBg = style.getPropertyValue('--canvas-bg').trim() || '#fafafa'
-  const textColor = style.getPropertyValue('--text-color').trim() || '#333'
+    preparedBlocks.forEach(({ block, layout, font, spacing }) => {
+        ctx.font = font
+        ctx.fillStyle = (block.type === 'heading' || block.type === 'bold') ? headingColor : textColor
+        ctx.textBaseline = 'alphabetic'
 
-  ctx.fillStyle = canvasBg
-  ctx.fillRect(0, 0, maxWidth, h)
+        layout.lines.forEach(line => {
+            // "Avoid" logic per word if possible, or per line for start
+            // To make it look like pretext style, we displace the entire line or segments.
+            
+            const lineX = 0
+            const midY = currentY - (LINE_HEIGHT / 2)
+            
+            const dx = (lineX + maxWidth / 2) - mouseX
+            const dy = midY - mouseY
+            const dist = Math.sqrt(dx * dx + dy * dy)
 
-  ctx.font = FONT
-  ctx.fillStyle = textColor
-  ctx.textBaseline = 'alphabetic'
+            let offsetX = 0
+            let offsetY = 0
 
-  let y = 20
-  for (let i = 0; i < lines.length; i++) {
-    ctx.fillText(lines[i].text, 4, y)
-    y += LINE_HEIGHT
-  }
+            if (dist < AVOID_RADIUS) {
+                const force = (AVOID_RADIUS - dist) / AVOID_RADIUS
+                offsetX = (dx / dist) * force * AVOID_STRENGTH
+                offsetY = (dy / dist) * force * AVOID_STRENGTH
+            }
 
-  stats.textContent = `${lineCount} lines · ${height.toFixed(1)}px tall · no getBoundingClientRect`
+            // Draw line with displacement
+            ctx.fillText(line.text, lineX + offsetX, currentY + offsetY)
+            currentY += (block.type === 'heading' ? 32 : LINE_HEIGHT)
+        })
+        currentY += spacing
+    })
 }
 
-render()
-widthRange.addEventListener('input', render)
+// Initial render and events
 window.addEventListener('resize', render)
+window.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect()
+    mouseX = e.clientX - rect.left
+    mouseY = e.clientY - rect.top
+    render()
+})
 
-// Theme Toggle Logic
 const themeToggle = document.getElementById('theme-toggle')
 let currentTheme = localStorage.getItem('theme') || 
                    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
@@ -65,7 +111,7 @@ function setTheme(theme) {
         document.body.removeAttribute('data-theme')
     }
     localStorage.setItem('theme', theme)
-    render() // Redraw canvas on theme change
+    render()
 }
 
 setTheme(currentTheme)
@@ -105,3 +151,13 @@ document.addEventListener('click', (e) => {
         emailPopup.classList.add('hidden')
     }
 })
+
+// Fix for resume hover
+document.querySelector('.resume-button').addEventListener('mouseenter', () => {
+    document.querySelector('.resume-preview-3d').style.animationPlayState = 'paused'
+})
+document.querySelector('.resume-button').addEventListener('mouseleave', () => {
+    document.querySelector('.resume-preview-3d').style.animationPlayState = 'running'
+})
+
+render()

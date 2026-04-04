@@ -347,67 +347,8 @@ body {
     margin-bottom: 0;
 }
 
-.pretext-playground {
-    margin-top: 28px;
-    margin-bottom: 24px;
-    padding-top: 20px;
-    border-top: 0.5px solid var(--border-light);
-}
-
-.pretext-playground h2 {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    font-weight: 300;
-    color: var(--text-black);
-}
-
-.pretext-lede {
-    font-size: 0.85em;
-    line-height: 1.5;
-    margin-bottom: 16px;
-    color: var(--text-dark);
-}
-
-.pretext-lede a {
-    color: var(--text-black-hover);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-}
-
-.pretext-lede a:hover {
-    color: var(--text-black);
-}
-
-.pretext-controls {
-    margin-bottom: 12px;
-}
-
-.pretext-controls label {
-    display: block;
-    font-size: 0.85em;
-    margin-bottom: 6px;
-    color: var(--text-dark);
-}
-
-.pretext-controls input[type="range"] {
+#pretext-bio-canvas {
     width: 100%;
-    max-width: 400px;
-    accent-color: var(--text-black-hover);
-}
-
-.pretext-canvas {
-    display: block;
-    width: 100%;
-    max-width: 400px;
-    border: 1px solid var(--border-canvas);
-    border-radius: 4px;
-    background: var(--canvas-bg);
-}
-
-.pretext-stats {
-    font-size: 0.8em;
-    color: var(--text-muted);
-    margin-top: 10px;
-    margin-bottom: 0;
-    font-variant-numeric: tabular-nums;
+    height: auto;
+    cursor: default;
 }
