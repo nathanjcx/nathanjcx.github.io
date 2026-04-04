@@ -1,20 +1,21 @@
 const themeToggle = document.getElementById('theme-toggle')
-let currentTheme = localStorage.getItem('theme') || 
-                   (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+const themes = ['light', 'dark', 'hacker']
+let currentThemeIndex = themes.indexOf(localStorage.getItem('theme') || 
+                   (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
+if (currentThemeIndex === -1) currentThemeIndex = 0
 
 function setTheme(theme) {
-    if (theme === 'dark') {
-        document.body.setAttribute('data-theme', 'dark')
-    } else {
-        document.body.removeAttribute('data-theme')
+    document.body.removeAttribute('data-theme')
+    if (theme !== 'light') {
+        document.body.setAttribute('data-theme', theme)
     }
     localStorage.setItem('theme', theme)
 }
 
-setTheme(currentTheme)
+setTheme(themes[currentThemeIndex])
 themeToggle.addEventListener('click', () => {
-    currentTheme = currentTheme === 'dark' ? 'light' : 'dark'
-    setTheme(currentTheme)
+    currentThemeIndex = (currentThemeIndex + 1) % themes.length
+    setTheme(themes[currentThemeIndex])
 })
 
 // Email Popup Logic

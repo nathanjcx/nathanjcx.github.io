@@ -37,6 +37,22 @@
     --icon-filter: invert(1);
 }
 
+[data-theme="hacker"] {
+    --bg-color: #000;
+    --text-color: #00FF00;
+    --text-muted: #008F11;
+    --text-dark: #00FF00;
+    --text-black: #00FF00;
+    --text-black-hover: #00FF00;
+    --border-color: #00FF00;
+    --border-light: #00FF00;
+    --border-canvas: #003300;
+    --canvas-bg: #000;
+    --btn-bg: #00FF00;
+    --btn-text: #000;
+    --icon-filter: sepia(100%) hue-rotate(60deg) saturate(1000%);
+}
+
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 300;
@@ -69,9 +85,16 @@ body {
 
 .theme-toggle-btn .sun-icon { display: none; }
 .theme-toggle-btn .moon-icon { display: block; }
+.theme-toggle-btn .terminal-icon { display: none; }
 
 [data-theme="dark"] .theme-toggle-btn .sun-icon { display: block; }
 [data-theme="dark"] .theme-toggle-btn .moon-icon { display: none; }
+[data-theme="dark"] .theme-toggle-btn .terminal-icon { display: none; }
+
+[data-theme="hacker"] .theme-toggle-btn .sun-icon { display: none; }
+[data-theme="hacker"] .theme-toggle-btn .moon-icon { display: none; }
+[data-theme="hacker"] .theme-toggle-btn .terminal-icon { display: block; }
+
 
 /* Profile section */
 .profile {
