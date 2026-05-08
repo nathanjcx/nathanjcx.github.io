@@ -207,6 +207,17 @@ body {
     color: var(--text-black);
 }
 
+.highlight-link {
+    color: var(--text-black);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: opacity 0.2s ease;
+}
+
+.highlight-link:hover {
+    opacity: 0.7;
+}
+
 .intro h2.greeting-row {
     font-size: 1.2em;
     margin-bottom: 20px;
@@ -270,15 +281,15 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 24px;
-    border: 1px solid var(--text-black);
+    padding: 10px 28px;
+    border: none;
     border-radius: 999px;
-    color: var(--text-black);
-    background-color: transparent;
+    color: var(--bg-color);
+    background-color: var(--text-black);
     text-decoration: none;
-    font-size: 0.85em;
-    font-weight: normal;
-    margin-top: 10px;
+    font-size: 0.9em;
+    font-weight: 500;
+    margin-top: 0px;
     margin-bottom: 50px;
 }
 
@@ -296,24 +307,27 @@ body {
 
 
 
-.experience-section {
-    margin-top: 20px;
-    margin-bottom: 5px;
+.experience-section, .projects-section {
+    margin-top: 32px;
+    margin-bottom: 16px;
 }
 
-.experience-section h2 {
-    font-size: 1.4em;
-    margin-bottom: 24px;
+.experience-section h2, .projects-section h2 {
+    display: inline-block;
+    font-size: 1.2em;
     font-weight: 300;
-    border-bottom: 0.5px solid var(--border-light);
-    padding-bottom: 8px;
+    padding: 6px 18px;
+    border: 1px solid var(--border-light);
+    border-radius: 999px;
+    margin-bottom: 22px;
     color: var(--text-black);
+    letter-spacing: 0.01em;
 }
 
-.experience-item {
-    margin-bottom: 24px;
-    padding-bottom: 24px;
-    border-bottom: 0.5px solid var(--border-light);
+.experience-item, .project-item {
+    margin-bottom: 20px;
+    padding-bottom: 0;
+    border-bottom: none;
 }
 
 
@@ -342,7 +356,7 @@ body {
 
 
 .experience-item h3 {
-    font-size: 1.1em;
+    font-size: 1.15em;
     margin: 0;
     color: var(--text-black);
     font-weight: 300;
@@ -350,16 +364,17 @@ body {
 
 
 
-.experience-item p {
-    font-size: 1em;
+.experience-item p, .project-item p {
+    font-size: 1.05em;
     line-height: 1.6;
     margin-bottom: 0;
 }
+/* Hobby Icons */
 .hobbies-row {
     display: flex;
-    gap: 25px;
+    gap: 16px;
     margin-top: 18px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     align-items: center;
 }
 
@@ -377,39 +392,13 @@ body {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.vball-icon {
+    width: 28px;
+    height: 28px;
+    transform: translateY(2px);
+}
+
 .hobby-item:hover .hobby-icon {
     opacity: 1;
     transform: scale(1.15) translateY(-2px);
-}
-
-/* Hobby Animations */
-.vball-icon { animation: vball-spin 5s linear infinite; }
-.snow-icon { animation: snow-carve 2.5s ease-in-out infinite alternate; }
-.guitar-icon { animation: guitar-vib 0.8s ease-in-out infinite alternate-reverse; }
-.plane-icon { animation: plane-fly 4s ease-in-out infinite alternate; }
-.family-icon { animation: icon-pulse 3s ease-in-out infinite alternate; }
-
-@keyframes vball-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-@keyframes snow-carve {
-    0% { transform: translate(-4px, 1px) rotate(-10deg); }
-    100% { transform: translate(4px, -1px) rotate(10deg); }
-}
-
-@keyframes guitar-vib {
-    0% { transform: rotate(-2deg); }
-    100% { transform: rotate(2deg); }
-}
-
-@keyframes plane-fly {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(3px, -3px); }
-}
-
-@keyframes icon-pulse {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.1); }
 }
