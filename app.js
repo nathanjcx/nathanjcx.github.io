@@ -1,5 +1,5 @@
 const themeToggle = document.getElementById('theme-toggle')
-const themes = ['light', 'dark', 'hacker']
+const themes = ['light', 'dark']
 let currentThemeIndex = themes.indexOf(localStorage.getItem('theme') || 'light')
 if (currentThemeIndex === -1) currentThemeIndex = 0
 
