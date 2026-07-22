@@ -30,7 +30,7 @@ emailBtn.addEventListener('click', (e) => {
 })
 
 copyEmailBtn.addEventListener('click', () => {
-    const email = 'nathanjcx@gmail.com'
+    const email = 'nathancheng7@gmail.com'
     const copyIcon = copyEmailBtn.querySelector('.copy-icon')
     const checkIcon = copyEmailBtn.querySelector('.check-icon')
     navigator.clipboard.writeText(email).then(() => {
