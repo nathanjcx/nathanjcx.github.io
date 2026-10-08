@@ -19,8 +19,11 @@
     <link rel="canonical" href="https://nathancheng.me/" />
     <link rel="icon" type="image/png" href="/icon.png" />
     <title>Nathan Cheng</title>
-    <script type="module" crossorigin src="/assets/index-Cvqr-R0D.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Qqgib9f1.css">
+    <noscript>
+      <style>.personal-card,.card-turn,.card-back{transform:none!important}.card-turn{display:block!important}.card-front,.card-back{visibility:visible!important}.card-back{margin-top:18px}.more-about,.back-link,#card-controls{display:none!important}</style>
+    </noscript>
+    <script type="module" crossorigin src="/assets/index-CHphgwhw.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-D82YqNIo.css">
   </head>
   <body>
     <main class="page">
@@ -38,7 +41,8 @@
         <path class="ribbon-front" />
         <path class="ribbon-stitch" />
       </svg>
-      <article class="personal-card" aria-label="About Nathan Cheng">
+      <article class="personal-card" aria-label="About Nathan Cheng" aria-describedby="card-controls">
+        <p class="sr-only" id="card-controls">Swipe left or right to flip. With a keyboard, use the Left or Right Arrow key. Escape returns to the front.</p>
         <svg class="card-hanger" viewBox="0 0 40 46" aria-hidden="true" focusable="false">
           <defs>
             <linearGradient id="clip-metal" x1="0" y1="0" x2="1" y2=".4">
@@ -57,7 +61,7 @@
         <div class="card-turn">
           <div class="card-face card-front" id="front">
             <div class="card-glare" aria-hidden="true"></div>
-            <a class="smiley" href="#about" aria-label="Show work history">
+            <div class="smiley" aria-hidden="true">
               <svg class="smiley-fallback" viewBox="0 0 200 200" aria-hidden="true">
                 <defs>
                   <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1">
@@ -88,7 +92,7 @@
                 />
               </svg>
               <canvas id="sculpture" aria-hidden="true"></canvas>
-            </a>
+            </div>
 
             <div class="intro">
               <h1>Nathan Cheng</h1>
@@ -118,8 +122,8 @@
               </svg>
             </a>
 
-            <a class="more-about" href="#about">
-              More about me
+            <div class="more-about">
+              Swipe for more
               <svg
                 viewBox="0 0 20 20"
                 fill="none"
@@ -129,7 +133,7 @@
               >
                 <path d="M4 10h12m-5-5 5 5-5 5" />
               </svg>
-            </a>
+            </div>
 
             <nav class="contact" aria-label="Contact Nathan">
               <a
@@ -195,7 +199,7 @@
           </div>
           <div class="card-face card-back" id="about">
             <div class="back-header">
-              <a class="back-link" href="#front">
+              <span class="back-link">
                 <svg
                   viewBox="0 0 20 20"
                   fill="none"
@@ -205,8 +209,8 @@
                 >
                   <path d="M16 10H4m5-5-5 5 5 5" />
                 </svg>
-                Back
-              </a>
+                Swipe back
+              </span>
               <a
                 class="resume-link"
                 href="/resume.pdf"
