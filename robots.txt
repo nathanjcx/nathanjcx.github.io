@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nathancheng.me/sitemap.xml
